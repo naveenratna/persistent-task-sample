@@ -1,0 +1,55 @@
+<div style="display: flex;">
+  <div class="row"> 
+    <div class="col-8"></div>
+    <div class="col-4">
+  <div class="example-container" >
+    <span style="cursor: pointer; color: blue;" (click)="openAddListDialog()">+ Add another list</span>
+  </div>
+</div> 
+</div>
+<br>
+
+<div cdkDropListGroup class="row">
+  <div class="example-container">
+    
+    <div *ngFor="let lst of listdata; let j = index"  >
+       <span class="example-container" style="display:inline-block;"><b> {{lst.fieldListName}} </b> 
+        <a class="delete-button" (click)="removeList(lst.id, 'deletelist')"><i class="material-icons" style="cursor: pointer; color: rgb(236, 92, 92);">delete</i></a>
+       </span>
+      
+    <div  cdkDropList
+    [cdkDropListData]="carddata"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)">
+    
+    <div *ngFor="let cdt of carddata; let k = index" cdkDrag> 
+      <div *ngIf='lst.id == cdt.parentid' class="example-list">
+        {{cdt.fieldName}}
+        <a class="delete-button" (click)="removeCard(cdt.id, 'deletecard')"><i class="material-icons" style="cursor: pointer; color: rgb(236, 92, 92);">delete</i></a>
+      </div>
+    </div>
+
+    <span style="cursor: pointer; color: blue;" (click)="openAddCardDialog(lst)">+ Add a card</span>
+  </div>
+  <br>
+</div> 
+    
+  </div>
+  
+
+
+<!--  <router-outlet></router-outlet> -->
+
+ <!-- <div fxLayoutAlign="center stretch">
+      <h2 *ngFor="let lst of listdata; let i = index">To do - {{lst.fieldListName}}</h2>
+      <div fxLayoutAlign="center stretch">
+        <mat-card class="lst" *ngFor="let lst of listdata; let i = index">
+            <mat-card-title>{{lst.fieldListName}}</mat-card-title>
+            <mat-card-content>
+                <p> </p>
+            </mat-card-content>
+            <mat-card-actions align="end">
+            </mat-card-actions>
+        </mat-card>
+    </div>
+    </div> -->

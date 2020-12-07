@@ -1,0 +1,71 @@
+
+ <!-- add card popup-->
+ <div *ngIf="(data?.type=='CardTypepopup')">
+<form name ='Formdata' #Formdata='ngForm' (ngSubmit)="saveCard(Formdata)" >
+    <h2>New Card Name</h2>
+    <mat-form-field>
+        <input matInput placeholder="Enter Name of the Card." required #fieldName="ngModel" name="fieldName"
+            [(ngModel)]="Objdata.fieldName" #fieldNameControl="ngModel" autocomplete="off" >
+            <mat-error
+            *ngIf="fieldNameControl.invalid && (fieldNameControl.dirty || fieldNameControl.touched) ||  formSubmitted && fieldNameControl.errors">
+            <span class="text-danger" *ngIf="fieldNameControl?.errors?.required"> Card Name is
+              required</span>
+          </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field *ngIf='false'>
+        <input matInput placeholder="parent name" required #parentName="ngModel" name="parentName"
+        [(ngModel)]="Objpdata.parentName"  autocomplete="off" readonly>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Add</button>
+</form>
+</div>
+
+<div *ngIf="(data?.type=='deletecard')">
+    <h5 style="color:green;text-align: center;padding-top: 14px" *ngIf="data?.type=='deletecard'"> Card
+        Deletion</h5>
+    <h6 *ngIf="data?.type=='deletecard'">Are You Sure You Want to Delete This Card ? </h6>
+    <div class="flright">
+        <button mat-flat-button color="warn" type="button" (click)="onNoClick()">No</button>&nbsp;&nbsp;
+        <button mat-flat-button color="primary" type="button" (click)="onYesClick()">Yes</button>
+      </div>
+</div>
+<div *ngIf="(data?.type=='deletelist')">
+    <h5 style="color:green;text-align: center;padding-top: 14px" *ngIf="data?.type=='deletelist'"> List
+        Deletion</h5>
+    <h6 *ngIf="data?.type=='deletelist'">Are You Sure You Want to Delete This List ? </h6>
+    <div class="flright">
+        <button mat-flat-button color="warn" type="button" (click)="onNoClick()">No</button>&nbsp;&nbsp;
+        <button mat-flat-button color="primary" type="button" (click)="onYesClick()">Yes</button>
+      </div>
+</div>
+
+<div *ngIf="(data?.type=='ListTypepopup')">
+    <form name ='FormListdata' #FormListdata='ngForm' (ngSubmit)="saveList(FormListdata)" >
+        <h2>New List Name</h2>
+        <mat-form-field>
+            <input matInput placeholder="Enter Name of the Card." required #fieldListName="ngModel" name="fieldListName"
+                [(ngModel)]="ObjListdata.fieldListName" #fieldListNameControl="ngModel" autocomplete="off">
+           <mat-error
+            *ngIf="fieldListNameControl.invalid && (fieldListNameControl.dirty || fieldListNameControl.touched) ||  formSubmitted && fieldListNameControl.errors">
+            <span class="text-danger" *ngIf="fieldListNameControl?.errors?.required"> List Name is
+              required</span>
+          </mat-error>
+        </mat-form-field>
+        <br>
+        <button mat-raised-button color="primary" type="submit">Add</button>
+    </form>
+</div>
+
+<!-- add list popup -->
+<!-- <div *ngIf="(data.type?=='ListTypepopup')">
+<form name ='FormListdata' #FormListdata='ngForm' (ngSubmit)="saveList(FormListdata)" >
+    <h2>New List Name</h2>
+    <mat-form-field>
+        <input matInput placeholder="Enter Another List Name." required #fieldListName="ngModel" name="fieldListName"
+            [(ngModel)]="ObjListdata.fieldListName">
+    </mat-form-field>
+    <br>
+    <button mat-raised-button color="primary" type="submit">Add</button>
+</form>
+</div> -->
